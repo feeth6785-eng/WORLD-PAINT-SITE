@@ -1,0 +1,2840 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>STOCKAGE World Paint</title>
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+
+<style>
+.action-buttons{display:flex;gap:6px;flex-wrap:wrap}.table-action{border:0;border-radius:7px;padding:7px 9px;cursor:pointer}.table-action.edit{background:#eef5ff;color:#1769aa}.table-action.delete{background:#fff0f0;color:#c62828}.table-action.stock{background:#eefaf1;color:#287a3d}.about-detailed{align-items:flex-start}.about-sections{display:grid;gap:10px;margin:18px 0}.about-sections section{padding:12px;border-radius:10px;background:rgba(0,0,0,.03)}.about-sections h4{margin:0 0 5px}.about-sections p{margin:0;line-height:1.55}
+.dark-mode .about-sections section{background:rgba(255,255,255,.06)}
+</style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     APPLICATION
+===================================================== -->
+
+<div class="app-container">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="brand">
+
+            <div class="brand-logo">
+
+                <i class="fa-solid fa-paint-roller"></i>
+
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    WORLD PAINT
+                </strong>
+
+                <span>
+                    STOCKAGE
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+            <p class="nav-title">
+                MENU PRINCIPAL
+            </p>
+
+
+            <a
+                href="#"
+                class="nav-link active"
+                data-page="dashboard"
+            >
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                <span data-i18n="dashboard">
+                    Tableau de bord
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="products"
+            >
+
+                <i class="fa-solid fa-box"></i>
+
+                <span data-i18n="products">
+                    Produits
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="production"
+            >
+
+                <i class="fa-solid fa-industry"></i>
+
+                <span data-i18n="production">
+                    Production
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="sales"
+            >
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span data-i18n="sales">
+                    Ventes
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="stock"
+            >
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span data-i18n="stock">
+                    Stock
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="statistics"
+            >
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span data-i18n="statistics">
+                    Statistiques
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="history"
+            >
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                <span data-i18n="history">
+                    Historique
+                </span>
+
+            </a>
+
+
+            <p class="nav-title second-title">
+                ADMINISTRATION
+            </p>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="users"
+            >
+
+                <i class="fa-solid fa-users"></i>
+
+                <span data-i18n="users">
+                    Utilisateurs
+                </span>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="settings"
+            >
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span data-i18n="settings">
+                    Paramètres
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- SIDEBAR FOOTER -->
+
+        <div class="sidebar-footer">
+
+            <div class="company-mini">
+
+                <div class="company-mini-logo">
+
+                    <i class="fa-solid fa-droplet"></i>
+
+                </div>
+
+                <div>
+
+                    <strong>
+                        World Paint
+                    </strong>
+
+                    <span>
+                        Gestion des stocks
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="logout-btn"
+            >
+
+                <i class="fa-solid fa-right-from-bracket"></i>
+
+                <span data-i18n="logout">
+                    Déconnexion
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         CONTENU PRINCIPAL
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                type="button"
+            >
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="topbar-title">
+
+                <h1 id="pageTitle">
+                    Tableau de bord
+                </h1>
+
+                <p>
+                    STOCKAGE World Paint
+                </p>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+                <button
+                    class="notification-btn"
+                    title="Notifications"
+                >
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+
+                <div class="user-profile">
+
+                    <div class="user-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+                    <div class="user-info">
+
+                        <strong>
+                            Administrateur
+                        </strong>
+
+                        <span>
+                            World Paint
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGES
+        ================================================== -->
+
+        <section class="pages-container">
+
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <div
+                id="dashboard"
+                class="page active-page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="dashboard">
+                            Tableau de bord
+                        </h2>
+
+                        <p>
+                            Vue générale de l'activité de World Paint.
+                        </p>
+
+                    </div>
+
+
+                    <div class="page-actions">
+
+                        <button
+                            class="secondary-btn"
+                            id="quickSaleBtn"
+                        >
+
+                            <i class="fa-solid fa-cart-plus"></i>
+
+                            Nouvelle vente
+
+                        </button>
+
+
+                        <button
+                            class="primary-btn"
+                            id="addProductBtn"
+                        >
+
+                            <i class="fa-solid fa-plus"></i>
+
+                            Nouveau produit
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STATISTIQUES RAPIDES -->
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+
+                            <i class="fa-solid fa-boxes-stacked"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Stock disponible
+                            </span>
+
+                            <strong id="totalStock">
+                                0
+                            </strong>
+
+                            <small>
+                                seaux
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+
+                            <i class="fa-solid fa-industry"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Production totale
+                            </span>
+
+                            <strong id="totalProduction">
+                                0
+                            </strong>
+
+                            <small>
+                                seaux
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Produits vendus
+                            </span>
+
+                            <strong id="totalSales">
+                                0
+                            </strong>
+
+                            <small>
+                                seaux
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+
+                            <i class="fa-solid fa-money-bill-wave"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Chiffre d'affaires
+                            </span>
+
+                            <strong id="totalRevenue">
+                                ₦0
+                            </strong>
+
+                            <small>
+                                NGN
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- GRAPHIQUES -->
+
+                <div class="dashboard-grid">
+
+
+                    <div class="dashboard-card large-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Évolution des ventes
+                                </h3>
+
+                                <span>
+                                    Performance commerciale
+                                </span>
+
+                            </div>
+
+                            <select
+                                id="salesPeriod"
+                                class="small-select"
+                            >
+
+                                <option value="7">
+                                    7 jours
+                                </option>
+
+                                <option value="30">
+                                    30 jours
+                                </option>
+
+                                <option value="90">
+                                    90 jours
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas
+                                id="salesChart"
+                            ></canvas>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Produits les plus vendus
+                                </h3>
+
+                                <span>
+                                    Meilleures ventes
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="topProductsList"
+                            class="list-container"
+                        >
+
+                            <div class="empty-state">
+
+                                <i class="fa-solid fa-chart-simple"></i>
+
+                                <p>
+                                    Aucune vente enregistrée.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BAS DASHBOARD -->
+
+                <div class="dashboard-grid">
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Alertes de stock
+                                </h3>
+
+                                <span>
+                                    Produits nécessitant une attention
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="lowStockList">
+
+                            <div class="empty-state">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                                <p>
+                                    Aucun stock faible.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Dernières ventes
+                                </h3>
+
+                                <span>
+                                    Activité récente
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="recentSalesList"
+                            class="list-container"
+                        >
+
+                            <div class="empty-state">
+
+                                <i class="fa-solid fa-receipt"></i>
+
+                                <p>
+                                    Aucune vente récente.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUITS
+            ================================================== -->
+
+            <div
+                id="products"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="products">
+                            Produits
+                        </h2>
+
+                        <p>
+                            Gestion des peintures et produits World Paint.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="addProductBtn2"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Ajouter un produit
+
+                    </button>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Catalogue des produits
+                            </h3>
+
+                            <span>
+                                Produits enregistrés
+                            </span>
+
+                        </div>
+
+
+                        <div class="search-box">
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            <input
+                                type="text"
+                                id="productSearch"
+                                placeholder="Rechercher un produit..."
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Produit
+                                    </th>
+
+                                    <th>
+                                        Référence
+                                    </th>
+
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    <th>
+                                        Couleur
+                                    </th>
+
+                                    <th>
+                                        Format
+                                    </th>
+
+                                    <th>
+                                        Prix
+                                    </th>
+
+                                    <th>
+                                        Stock
+                                    </th>
+
+                                    <th>
+                                        État
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="productsTable">
+
+                                <tr>
+
+                                    <td colspan="9">
+
+                                        <div class="empty-table">
+
+                                            <i class="fa-solid fa-box-open"></i>
+
+                                            <p>
+                                                Aucun produit enregistré.
+                                            </p>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUCTION
+            ================================================== -->
+
+            <div
+                id="production"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="production">
+                            Production
+                        </h2>
+
+                        <p>
+                            Enregistrez les nouvelles productions.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="addProductionBtn"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Nouvelle production
+
+                    </button>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Historique de production
+                            </h3>
+
+                            <span>
+                                Toutes les productions enregistrées
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Produit
+                                    </th>
+
+                                    <th>
+                                        Quantité
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="productionTable">
+
+                                <tr>
+
+                                    <td colspan="4">
+
+                                        Aucune production enregistrée.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 VENTES
+            ================================================== -->
+
+            <div
+                id="sales"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="sales">
+                            Ventes
+                        </h2>
+
+                        <p>
+                            Enregistrez et consultez les ventes.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="addSaleBtn"
+                    >
+
+                        <i class="fa-solid fa-cart-plus"></i>
+
+                        Nouvelle vente
+
+                    </button>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Historique des ventes
+                            </h3>
+
+                            <span>
+                                Toutes les ventes enregistrées
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Produit
+                                    </th>
+
+                                    <th>
+                                        Quantité
+                                    </th>
+
+                                    <th>
+                                        Prix unitaire
+                                    </th>
+
+                                    <th>
+                                        Total
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="salesTable">
+
+                                <tr>
+
+                                    <td colspan="5">
+
+                                        Aucune vente enregistrée.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STOCK
+            ================================================== -->
+
+            <div
+                id="stock"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="stock">
+                            Stock
+                        </h2>
+
+                        <p>
+                            État actuel des stocks.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Inventaire actuel
+                            </h3>
+
+                            <span>
+                                Stock disponible par produit
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Produit
+                                    </th>
+
+                                    <th>
+                                        Référence
+                                    </th>
+
+                                    <th>
+                                        Format
+                                    </th>
+
+                                    <th>
+                                        Stock initial
+                                    </th>
+
+                                    <th>
+                                        Production
+                                    </th>
+
+                                    <th>
+                                        Vendus
+                                    </th>
+
+                                    <th>
+                                        Stock restant
+                                    </th>
+
+                                    <th>
+                                        État
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="stockTable">
+
+                                <tr>
+
+                                    <td colspan="8">
+
+                                        Aucun produit enregistré.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATISTIQUES
+            ================================================== -->
+
+            <div
+                id="statistics"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="statistics">
+                            Statistiques
+                        </h2>
+
+                        <p>
+                            Analyse des performances de World Paint.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+
+                            <i class="fa-solid fa-box"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Produits disponibles
+                            </span>
+
+                            <strong id="statProductCount">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+
+                            <i class="fa-solid fa-industry"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total produit
+                            </span>
+
+                            <strong id="statProduced">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon orange">
+
+                            <i class="fa-solid fa-cart-shopping"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Total vendu
+                            </span>
+
+                            <strong id="statSold">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+
+                            <i class="fa-solid fa-naira-sign"></i>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Chiffre d'affaires
+                            </span>
+
+                            <strong id="statRevenue">
+                                ₦0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card large-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Analyse des ventes
+                                </h3>
+
+                                <span>
+                                    Évolution du chiffre d'affaires
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="chart-container">
+
+                            <canvas
+                                id="statisticsChart"
+                            ></canvas>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h3>
+                                    Résumé
+                                </h3>
+
+                                <span>
+                                    Situation actuelle
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="statisticsSummary"
+                            class="summary-list"
+                        >
+
+                            <p>
+                                Aucune donnée disponible.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 HISTORIQUE
+            ================================================== -->
+
+            <div
+                id="history"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="history">
+                            Historique
+                        </h2>
+
+                        <p>
+                            Journal de toutes les opérations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Journal des opérations
+                            </h3>
+
+                            <span>
+                                Activité du système
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Date
+                                    </th>
+
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                    <th>
+                                        Produit
+                                    </th>
+
+                                    <th>
+                                        Quantité
+                                    </th>
+
+                                    <th>
+                                        Détails
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="historyTable">
+
+                                <tr>
+
+                                    <td colspan="6">
+
+                                        Aucun historique.
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 UTILISATEURS
+            ================================================== -->
+
+            <div
+                id="users"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="users">
+                            Utilisateurs
+                        </h2>
+
+                        <p>
+                            Gestion des utilisateurs du système.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        id="addUserBtn"
+                    >
+
+                        <i class="fa-solid fa-user-plus"></i>
+
+                        Ajouter un utilisateur
+
+                    </button>
+
+                </div>
+
+
+                <div class="dashboard-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h3>
+                                Comptes utilisateurs
+                            </h3>
+
+                            <span>
+                                Utilisateurs autorisés
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Nom
+                                    </th>
+
+                                    <th>
+                                        Nom d'utilisateur
+                                    </th>
+
+                                    <th>
+                                        Rôle
+                                    </th>
+
+                                    <th>
+                                        Statut
+                                    </th>
+
+                                    <th>
+                                        Actions
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="usersTable">
+
+                                <tr>
+
+                                    <td>
+                                        Administrateur
+                                    </td>
+
+                                    <td>
+                                        admin
+                                    </td>
+
+                                    <td>
+                                        Administrateur
+                                    </td>
+
+                                    <td>
+                                        <span class="status-active">
+                                            Actif
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        —
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PARAMÈTRES
+            ================================================== -->
+
+            <div
+                id="settings"
+                class="page"
+            >
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <h2 data-i18n="settings">
+                            Paramètres
+                        </h2>
+
+                        <p>
+                            Configuration de STOCKAGE World Paint.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ENTREPRISE -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-building"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="companyInformation">
+                                Informations de l'entreprise
+                            </h2>
+
+                            <p data-i18n="companyDescription">
+                                Informations générales de World Paint
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label data-i18n="companyName">
+                                Nom de l'entreprise
+                            </label>
+
+                            <input
+                                type="text"
+                                id="companyName"
+                                value="World Paint"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label data-i18n="softwareName">
+                                Nom du logiciel
+                            </label>
+
+                            <input
+                                type="text"
+                                id="softwareName"
+                                value="STOCKAGE World Paint"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label data-i18n="currency">
+                                Devise
+                            </label>
+
+                            <select id="currency">
+
+                                <option
+                                    value="NGN"
+                                    selected
+                                >
+                                    ₦ Naira nigérian (NGN)
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label data-i18n="currencySymbol">
+                                Symbole monétaire
+                            </label>
+
+                            <input
+                                type="text"
+                                id="currencySymbol"
+                                value="₦"
+                                maxlength="3"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- STOCK -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-boxes-stacked"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="stockManagement">
+                                Gestion du stock
+                            </h2>
+
+                            <p data-i18n="stockDescription">
+                                Configuration des alertes de stock
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label data-i18n="lowStock">
+                                Seuil de stock faible
+                            </label>
+
+                            <input
+                                type="number"
+                                id="lowStockLimit"
+                                min="0"
+                                value="10"
+                            >
+
+                            <small>
+                                Une alerte apparaît lorsque le stock
+                                atteint cette quantité.
+                            </small>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label data-i18n="stockAlerts">
+                                Alertes de stock
+                            </label>
+
+                            <select id="stockAlerts">
+
+                                <option value="enabled">
+                                    Activées
+                                </option>
+
+                                <option value="disabled">
+                                    Désactivées
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="format-section">
+
+                        <h3>
+                            Formats disponibles
+                        </h3>
+
+
+                        <div class="format-list">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="5"
+                                    checked
+                                >
+                                5 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="10"
+                                    checked
+                                >
+                                10 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="15"
+                                    checked
+                                >
+                                15 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="20"
+                                    checked
+                                >
+                                20 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="25"
+                                    checked
+                                >
+                                25 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="30"
+                                    checked
+                                >
+                                30 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="40"
+                                    checked
+                                >
+                                40 L
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    value="50"
+                                    checked
+                                >
+                                50 L
+                            </label>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FINANCES -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-money-bill-wave"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="financialSettings">
+                                Paramètres financiers
+                            </h2>
+
+                            <p data-i18n="financialDescription">
+                                Configuration des ventes et du chiffre d'affaires
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Devise utilisée
+                            </label>
+
+                            <input
+                                type="text"
+                                value="Naira nigérian (₦)"
+                                readonly
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Calcul des ventes
+                            </label>
+
+                            <select id="automaticCalculation">
+
+                                <option value="enabled">
+                                    Calcul automatique
+                                </option>
+
+                                <option value="disabled">
+                                    Désactivé
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SITES DE VENTE -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-store"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Sites de vente
+                            </h2>
+
+                            <p>
+                                Gestion des boutiques et points de vente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="salesSitesList"
+                        class="settings-list"
+                    >
+
+                        <div class="settings-list-item">
+
+                            <div>
+
+                                <strong>
+                                    Boutique principale
+                                </strong>
+
+                                <span>
+                                    Site de vente principal
+                                </span>
+
+                            </div>
+
+                            <span class="admin-badge">
+                                ACTIF
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="settings-button"
+                        id="addSalesSiteBtn"
+                    >
+
+                        <i class="fa-solid fa-plus"></i>
+
+                        Ajouter un site de vente
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- NOTIFICATIONS -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-bell"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Notifications
+                            </h2>
+
+                            <p>
+                                Configurez les alertes du système.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Alertes de stock faible
+                            </label>
+
+                            <select id="lowStockNotifications">
+
+                                <option value="enabled">
+                                    Activées
+                                </option>
+
+                                <option value="disabled">
+                                    Désactivées
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Alertes de rupture
+                            </label>
+
+                            <select id="outOfStockNotifications">
+
+                                <option value="enabled">
+                                    Activées
+                                </option>
+
+                                <option value="disabled">
+                                    Désactivées
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- FACTURES -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-file-invoice"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Factures et reçus
+                            </h2>
+
+                            <p>
+                                Personnalisation des documents de vente.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label>
+                                Nom affiché sur les documents
+                            </label>
+
+                            <input
+                                type="text"
+                                id="invoiceCompanyName"
+                                value="World Paint"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Pied de page
+                            </label>
+
+                            <input
+                                type="text"
+                                id="invoiceFooter"
+                                value="Merci pour votre confiance."
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LANGUE -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-language"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="languageTitle">
+                                Langue
+                            </h2>
+
+                            <p data-i18n="languageDescription">
+                                Choisissez la langue de l'application.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label data-i18n="languageLabel">
+                                Langue de l'application
+                            </label>
+
+
+                            <select id="languageSelect">
+
+                                <option value="fr">
+                                    🇫🇷 Français
+                                </option>
+
+                                <option value="en">
+                                    🇬🇧 English
+                                </option>
+
+                                <option value="ig">
+                                    🇳🇬 Igbo
+                                </option>
+
+                            </select>
+
+
+                            <small data-i18n="languageHelp">
+                                Le changement de langue sera automatiquement enregistré.
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- APPARENCE -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-palette"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="appearance">
+                                Apparence
+                            </h2>
+
+                            <p data-i18n="appearanceDescription">
+                                Personnalisation de l'interface.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-grid">
+
+                        <div class="form-group">
+
+                            <label data-i18n="displayMode">
+                                Mode d'affichage
+                            </label>
+
+                            <select id="themeMode">
+
+                                <option
+                                    value="light"
+                                    data-i18n="lightMode"
+                                >
+                                    Mode clair
+                                </option>
+
+                                <option
+                                    value="dark"
+                                    data-i18n="darkMode"
+                                >
+                                    Mode sombre
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- UTILISATEURS -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-users-gear"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Utilisateurs et sécurité
+                            </h2>
+
+                            <p>
+                                Gestion des accès au logiciel.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-info-box">
+
+                        <div>
+
+                            <strong>
+                                Administrateur
+                            </strong>
+
+                            <span>
+                                Accès complet au système
+                            </span>
+
+                        </div>
+
+
+                        <span class="admin-badge">
+                            ADMIN
+                        </span>
+
+                    </div>
+
+
+                    <div class="settings-actions">
+
+                        <button
+                            class="settings-button"
+                            id="manageUsersBtn"
+                        >
+
+                            <i class="fa-solid fa-user-gear"></i>
+
+                            Gérer les utilisateurs
+
+                        </button>
+
+
+                        <button
+                            class="settings-button"
+                            id="changePasswordBtn"
+                        >
+
+                            <i class="fa-solid fa-key"></i>
+
+                            Modifier le mot de passe
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SAUVEGARDE -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-database"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2 data-i18n="data">
+                                Données
+                            </h2>
+
+                            <p data-i18n="dataDescription">
+                                Gestion des données de World Paint.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="settings-actions">
+
+
+                        <button
+                            class="settings-button"
+                            id="exportDataBtn"
+                        >
+
+                            <i class="fa-solid fa-download"></i>
+
+                            <span data-i18n="exportData">
+                                Exporter les données
+                            </span>
+
+                        </button>
+
+
+                        <label
+                            class="settings-button"
+                            for="importDataInput"
+                        >
+
+                            <i class="fa-solid fa-upload"></i>
+
+                            <span data-i18n="importData">
+                                Importer une sauvegarde
+                            </span>
+
+                        </label>
+
+
+                        <input
+                            type="file"
+                            id="importDataInput"
+                            accept=".json"
+                            hidden
+                        >
+
+
+                        <button
+                            class="settings-button danger"
+                            id="resetDataBtn"
+                        >
+
+                            <i class="fa-solid fa-trash"></i>
+
+                            <span data-i18n="resetData">
+                                Réinitialiser les données
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- À PROPOS -->
+
+                <div class="settings-card">
+
+                    <div class="settings-title">
+
+                        <div class="settings-icon">
+
+                            <i class="fa-solid fa-circle-info"></i>
+
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                À propos
+                            </h2>
+
+                            <p>
+                                Informations sur le logiciel.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-box about-detailed">
+                        <div class="about-logo">
+                            <i class="fa-solid fa-paint-roller"></i>
+                        </div>
+                        <div>
+                            <h3>STOCKAGE World Paint</h3>
+                            <p><strong>Version 1.1.0</strong></p>
+                            <p>STOCKAGE World Paint est un logiciel de gestion conçu pour centraliser le suivi des produits de peinture, de la production, des ventes et des stocks de World Paint. Il permet aux responsables et aux membres autorisés de l'administration de disposer d'une vision claire des opérations et de suivre les activités depuis une seule interface.</p>
+                            <div class="about-sections">
+                                <section><h4>1. Tableau de bord</h4><p>Présente une vue synthétique de l'entreprise : stock disponible, production, produits vendus, chiffre d'affaires, alertes et graphiques de performance. Il permet de comprendre rapidement la situation générale.</p></section>
+                                <section><h4>2. Produits</h4><p>Permet de créer et gérer le catalogue : nom, référence, type de peinture, couleur, format de 5 à 50 litres, prix et stock initial. Les produits peuvent être recherchés, modifiés ou supprimés.</p></section>
+                                <section><h4>3. Production</h4><p>Permet d'enregistrer les quantités produites. Une production augmente automatiquement le stock du produit concerné. Les opérations peuvent être modifiées ou supprimées et le stock est recalculé.</p></section>
+                                <section><h4>4. Ventes</h4><p>Permet d'enregistrer les ventes, de choisir le site de vente et la quantité. Le système vérifie le stock, calcule automatiquement le total en Naira et diminue le stock. Une vente peut être modifiée ou supprimée.</p></section>
+                                <section><h4>5. Stock</h4><p>Présente le stock initial, les productions, les quantités vendues et le stock restant. Les alertes signalent les produits faibles ou en rupture. Des corrections peuvent être effectuées selon les droits de l'utilisateur.</p></section>
+                                <section><h4>6. Statistiques</h4><p>Analyse les produits disponibles, la production, les ventes et le chiffre d'affaires. Les graphiques facilitent l'analyse des performances commerciales et l'identification des tendances.</p></section>
+                                <section><h4>7. Historique</h4><p>Conserve les opérations réalisées : créations, productions, ventes, modifications et suppressions. Il permet de suivre les mouvements et de contrôler l'activité du système.</p></section>
+                                <section><h4>8. Utilisateurs</h4><p>Permet de gérer les comptes autorisés, leurs noms, identifiants, rôles et statuts. Les administrateurs peuvent modifier ou supprimer les comptes selon leurs responsabilités.</p></section>
+                                <section><h4>9. Paramètres</h4><p>Permet de personnaliser l'entreprise, la devise, les seuils de stock, les alertes, les calculs, les sites de vente, les factures, la langue, l'apparence et les données.</p></section>
+                                <section><h4>10. Sites de vente</h4><p>Permet d'enregistrer les boutiques et points de vente. Chaque vente peut être associée à un site afin de faciliter le suivi commercial.</p></section>
+                                <section><h4>11. Données et sauvegardes</h4><p>Permet d'exporter les données dans une sauvegarde JSON, de restaurer une sauvegarde compatible et de réinitialiser les données lorsque cela est nécessaire.</p></section>
+                                <section><h4>12. À propos</h4><p>Cette page explique le rôle de chaque module et sert de guide intégré pour les utilisateurs de STOCKAGE World Paint.</p></section>
+                            </div>
+                            <p><strong>Objectif général :</strong> offrir à World Paint un outil centralisé, organisé et automatisé pour contrôler les stocks, suivre la production, enregistrer les ventes, calculer le chiffre d'affaires et faciliter la prise de décision.</p>
+                            <span>Devise : Naira nigérian (₦) · Langues : Français, English, Igbo</span>
+                        </div>
+                    </div>
+
+
+                        <div>
+
+                            <h3>
+                                STOCKAGE World Paint
+                            </h3>
+
+                            <p>
+                                Logiciel de gestion des stocks,
+                                productions et ventes de World Paint.
+                            </p>
+
+                            <span>
+                                Version 1.0.0
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ENREGISTRER -->
+
+                <div class="settings-save">
+
+                    <button
+                        class="primary-btn"
+                        id="saveSettingsBtn"
+                    >
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        <span data-i18n="saveSettings">
+                            Enregistrer les paramètres
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     MODAL PRODUIT
+===================================================== -->
+
+<div
+    id="productModal"
+    class="modal-overlay"
+>
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Nouveau produit
+                </h2>
+
+                <p>
+                    Ajouter une peinture au catalogue.
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="close-modal"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <form id="productForm">
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nom du produit
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productName"
+                        placeholder="Ex : World Paint Premium"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Référence
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productReference"
+                        placeholder="Ex : WP-001"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Type de peinture
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productType"
+                        placeholder="Ex : Peinture acrylique"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Couleur
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productColor"
+                        placeholder="Ex : Blanc"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Format du seau
+                    </label>
+
+                    <select
+                        id="productSize"
+                        required
+                    >
+
+                        <option value="">
+                            Sélectionner
+                        </option>
+
+                        <option value="5">
+                            5 litres
+                        </option>
+
+                        <option value="10">
+                            10 litres
+                        </option>
+
+                        <option value="15">
+                            15 litres
+                        </option>
+
+                        <option value="20">
+                            20 litres
+                        </option>
+
+                        <option value="25">
+                            25 litres
+                        </option>
+
+                        <option value="30">
+                            30 litres
+                        </option>
+
+                        <option value="40">
+                            40 litres
+                        </option>
+
+                        <option value="50">
+                            50 litres
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Prix de vente (₦)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        min="0"
+                        placeholder="Ex : 15000"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Stock initial
+                    </label>
+
+                    <input
+                        type="number"
+                        id="initialStock"
+                        min="0"
+                        placeholder="Ex : 100"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn close-modal"
+                >
+                    Annuler
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Ajouter le produit
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     CHART.JS
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/chart.js"
+></script>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="app.js"></script>
+
+
+</body>
+
+</html>

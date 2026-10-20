@@ -1,0 +1,249 @@
+<div class="login-footer">
+
+    <i class="fa-solid fa-shield-halved"></i>
+    <span>Accès réservé au personnel autorisé</span>
+
+    <div class="login-links">
+        <a href="register.html">Créer un compte</a> |
+        <a href="forgot-password.html">Mot de passe oublié</a> |
+        <a href="login.html">Se connecter</a>
+    </div>
+
+</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion — STOCKAGE World Paint</title>
+
+    <link rel="stylesheet" href="login.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <main class="login-container">
+
+        <section class="login-brand">
+
+            <div class="brand-logo">
+                <i class="fa-solid fa-paint-roller"></i>
+            </div>
+
+            <h1>WORLD PAINT</h1>
+
+            <span>STOCKAGE</span>
+
+            <p>
+                Système de gestion des stocks,
+                productions et ventes.
+            </p>
+
+        </section>
+
+
+        <section class="login-card">
+
+            <div class="login-header">
+
+                <h2>Bienvenue</h2>
+
+                <p>
+                    Connectez-vous à votre espace de gestion.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="username">
+                        Nom d'utilisateur
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Votre nom d'utilisateur"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="password">
+                        Mot de passe
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Votre mot de passe"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="showPassword"
+                            class="show-password"
+                        >
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="loginError"
+                    class="login-error"
+                ></div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+
+                    <span>Se connecter</span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Accès réservé au personnel autorisé
+                </span>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        © 2026 World Paint — STOCKAGE
+
+    </footer>
+
+
+    <script>
+
+        const loginForm =
+            document.getElementById("loginForm");
+
+        const error =
+            document.getElementById("loginError");
+
+        const password =
+            document.getElementById("password");
+
+        const showPassword =
+            document.getElementById("showPassword");
+
+
+        showPassword.addEventListener(
+            "click",
+            () => {
+
+                if (password.type === "password") {
+
+                    password.type = "text";
+
+                    showPassword.innerHTML =
+                        '<i class="fa-regular fa-eye-slash"></i>';
+
+                } else {
+
+                    password.type = "password";
+
+                    showPassword.innerHTML =
+                        '<i class="fa-regular fa-eye"></i>';
+
+                }
+
+            }
+        );
+
+
+        loginForm.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const username =
+                    document
+                        .getElementById("username")
+                        .value
+                        .trim();
+
+                const passwordValue =
+                    password.value;
+
+
+                /*
+                    COMPTE TEMPORAIRE
+                    À remplacer plus tard
+                    par notre vraie gestion
+                    des utilisateurs.
+                */
+
+                if (
+                    username === "admin" &&
+                    passwordValue === "WorldPaint2026"
+                ) {
+
+                    sessionStorage.setItem(
+                        "worldPaintLoggedIn",
+                        "true"
+                    );
+
+                    window.location.href =
+                        "index.html";
+
+                } else {
+
+                    error.textContent =
+                        "Nom d'utilisateur ou mot de passe incorrect.";
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+</html>
